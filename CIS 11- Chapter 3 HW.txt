@@ -1,0 +1,84 @@
+Nathaniel Chandler
+Chapter 3 Homework
+-------------------
+3.1.11
+-------------------
+1.	-35d
+	-100011b
+	-23h
+	-43o
+2.No
+3.No
+4.	 -100/4 * 2 - (2+3) MOD 5
+	= -50
+-------------------
+3.2.4
+-------------------
+4.eax
+5.END main
+-------------------
+3.3.3
+-------------------
+1.object file
+2.True
+3.True
+4.Loader
+-------------------
+3.4.13
+-------------------
+1. one SWORD 123456
+2. two BYTE 123
+3. three SBYTE 234
+4. four QWORD 98342356
+5. SDWORD
+-------------------
+3.5.5
+-------------------
+3.myArraySize = ($ - myArray);
+-------------------
+3.9.1
+-------------------
+4.  The assembler is a tool, not a language
+5.  Big & Little Endian are two different ways of organizing multi-byte words. The names come from
+Gulliver's travels, where two groups of people conflict on which side of an egg to break.
+6.  So that you can change all of the symbols at a later time by changing the 
+definition of the symbol, instead of having to dig and change all of the literals.
+25. SDWORD
+-------------------
+3.9.2
+-------------------
+4. You can declare a variable of type DWORD and assign it a negative value, unless I didn't do this right.
+The assembler's type checking is weak.
+5. I didn't see a difference when adding 5 to the edx and eax registers. However, I probably didn't do it right.
+13. var db "TEST",0
+.code
+MUL var,500
+-------------------
+3.10
+-------------------
+1 exercise
+(note to self: Put Code Here)
+;1. Integer Expression Calculation Using the AddTwo program from Section 3.2 as a reference, 
+;write a program that calculates the following expression, 
+;using registers: A = (A + B) - (C + D). 
+;Assign integer values to the EAX, EBX, ECX, and EDX registers.
+
+ExitProcess proto
+.data
+
+.code
+main proc
+	mov eax,16
+	mov ebx,4
+	mov ecx,6
+	mov edx,7
+
+	add eax,ebx
+	add ecx,edx
+	sub eax,ecx
+
+   call ExitProcess
+
+main endp
+
+end
