@@ -1,0 +1,16 @@
+
+writeToScreen proc
+	call Random64
+	call writeInt64 ;(uses RDX)
+                  ;can alternatively be writeString (uses RAX)
+	ret
+writeToScreen endp
+_____________________________
+
+pressEnterToContinue proc
+	call Crlf
+	mov rdx, OFFSET pressEnter
+	call WriteString
+	call ReadInt64
+	ret
+pressEnterToContinue endp
