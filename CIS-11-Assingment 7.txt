@@ -1,0 +1,269 @@
+5. Boolean Calculator (1) Create a program that functions as a simple boolean calculator for 32-bit integers.
+ It should display a menu that asks the user to make a selection from the following list: 
+1.x AND y 
+2.x OR y 
+3.NOT x 
+4.x XOR y 
+5.Exit program
+When the user makes a choice, call a procedure that displays the name of the operation about to be performed. 
+--------------------------------------------------------------
+
+WriteInt64 PROTO
+WriteString PROTO
+ReadString PROTO
+ReadInt64 PROTO
+Crlf PROTO 
+
+extrn ExitProcess: PROC
+
+.data
+input BYTE 0,0
+case1 BYTE 1,0
+case2 BYTE 2,0
+case3 BYTE 3,0
+case4 BYTE 4,0
+
+prompt BYTE "Make a selection from the following list: ",0
+options BYTE "1.x AND y 2.x OR y 3.NOT x 4.x XOR y 5.Exit program",0
+option1 BYTE "x AND y",0
+option2 BYTE "x OR y",0
+option3 BYTE "NOT x",0
+option4 BYTE "x XOR y",0
+pressEnter BYTE "Press Enter to Continue",0
+.code
+main proc
+	mov edx, OFFSET prompt
+	call WriteString
+	call Crlf
+	mov edx, OFFSET options
+	call WriteString
+	call Crlf
+	call ReadInt64
+
+	mov input, al
+	mov cl, case1
+	cmp cl, al
+	jz l1
+	mov cl, case2
+	cmp cl, al
+	jz l2
+	mov cl, case3
+	cmp cl, al
+	jz l3
+	mov cl, case4
+	cmp cl, al
+	jz l4
+	jmp EndProgram
+
+	l1:
+		call Process_And
+		jmp EndProgram
+	l2:
+		call Process_Or
+		jmp EndProgram
+	l3:
+		call Process_Not
+		jmp EndProgram
+	l4:
+		call Process_Xor
+		jmp EndProgram
+
+	EndProgram:
+	call pressEnterToContinue
+
+    call ExitProcess
+
+main endp
+
+writeToScreen proc
+
+	call WriteInt64
+
+	ret
+writeToScreen endp
+
+pressEnterToContinue proc
+	call Crlf
+	mov rdx, OFFSET pressEnter
+	call WriteString
+	call ReadInt64
+	ret
+pressEnterToContinue endp
+
+Process_And proc
+	mov rdx, OFFSET option1
+	call WriteString
+	ret
+Process_And endp
+
+Process_Or proc
+	mov rdx, OFFSET option2
+	call WriteString
+	ret
+Process_Or endp
+
+Process_Not proc
+	mov rdx, OFFSET option3
+	call WriteString
+	ret
+Process_Not endp
+
+Process_Xor proc
+	mov rdx, OFFSET option4
+	call WriteString
+	ret
+Process_Xor endp
+
+end
+_____________________________________________________________________________
+
+6. Boolean Calculator (2) Continue the solution program from Exercise 5 by implementing the following procedures:
+ • AND_op: Prompt the user for two hexadecimal integers. AND them together and display the result in hexadecimal.
+• OR_op: Prompt the user for two hexadecimal integers. OR them together and display the result in hexadecimal. 
+• NOT_op: Prompt the user for a hexadecimal integer. NOT the integer and display the result in hexadecimal. 
+• XOR_op: Prompt the user for two hexadecimal integers. Exclusive-OR them together and display the result in hexadecimal. 
+----------------------------------------------------------------------------
+;does decimal, not hexadecimal, sorry
+
+WriteInt64 PROTO
+WriteString PROTO
+ReadString PROTO
+ReadInt64 PROTO
+Crlf PROTO 
+
+extrn ExitProcess: PROC
+
+.data
+input BYTE 0,0
+var1 BYTE 0,0
+var2 BYTE 0,0
+case1 BYTE 1,0
+case2 BYTE 2,0
+case3 BYTE 3,0
+case4 BYTE 4,0
+
+prompt BYTE "Make a selection from the following list: ",0
+prompt1 BYTE "Enter your first variable:  ",0
+prompt2 BYTE "Enter your second variable:  ",0
+options BYTE "1.x AND y 2.x OR y 3.NOT x 4.x XOR y 5.Exit program",0
+option1 BYTE "x AND y",0
+option2 BYTE "x OR y",0
+option3 BYTE "NOT x",0
+option4 BYTE "x XOR y",0
+pressEnter BYTE "Press Enter to Continue",0
+.code
+main proc
+	mov edx, OFFSET prompt
+	call WriteString
+	call Crlf
+	mov edx, OFFSET options
+	call WriteString
+	call Crlf
+	call ReadInt64
+	mov input, al
+	
+	mov edx, OFFSET prompt1
+	call WriteString
+	call Crlf
+	call ReadInt64
+	mov var1, al
+
+	mov edx, OFFSET prompt2
+	call WriteString
+	call Crlf
+	call ReadInt64
+	mov var2, al
+
+	mov cl, case1
+	cmp cl, input
+	jz l1
+	mov cl, case2
+	cmp cl, input
+	jz l2
+	mov cl, case3
+	cmp cl, input
+	jz l3
+	mov cl, case4
+	cmp cl, input
+	jz l4
+	jmp EndProgram
+
+	l1:
+		call Process_And
+		jmp EndProgram
+	l2:
+		call Process_Or
+		jmp EndProgram
+	l3:
+		call Process_Not
+		jmp EndProgram
+	l4:
+		call Process_Xor
+		jmp EndProgram
+
+
+
+
+	EndProgram:
+	call pressEnterToContinue
+
+    call ExitProcess
+
+main endp
+
+writeToScreen proc
+
+	call WriteInt64
+
+	ret
+writeToScreen endp
+
+pressEnterToContinue proc
+	call Crlf
+	mov rdx, OFFSET pressEnter
+	call WriteString
+	call ReadInt64
+	ret
+pressEnterToContinue endp
+
+Process_And proc
+	mov rdx, OFFSET option1
+	call WriteString
+	call Crlf
+	mov al, var1
+	and al, var2
+	call WriteInt64
+	ret
+Process_And endp
+
+Process_Or proc
+	mov rdx, OFFSET option2
+	call WriteString
+	call Crlf
+	mov al, var1
+	or al, var2
+	call WriteInt64
+	ret
+Process_Or endp
+
+Process_Not proc
+	mov rdx, OFFSET option3
+	call WriteString
+	call Crlf
+	mov al, var1
+	not al
+	call WriteInt64
+	ret
+Process_Not endp
+
+Process_Xor proc
+	mov rdx, OFFSET option4
+	call WriteString
+	call Crlf
+	mov al, var1
+	xor al, var2
+	call WriteInt64
+	ret
+Process_Xor endp
+
+end
