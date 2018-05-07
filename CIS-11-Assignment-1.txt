@@ -1,0 +1,142 @@
+1.1.3
+1)The assembler converts the code into machine language, and the linker combines files created by
+	the assembler into a single executeable file.
+3)A single statement of a higher level language expands into muliple assembly commands.
+8)Type checking in higher level languages is probably stricter than in assembly, aside from two operands being the same size in 
+	assembly. 
+12).data
+WORD Y,3 
+WORD X,0 
+.code
+mov eax,Y  
+add eax,4  
+mov ebx,3  
+imul ebx 
+mov X,eax
+;it wasn't much of a challenge; the answer was in the book
+==========
+1.2.1
+2)Because the translated program does not have to be translated into a lower level language before each command is executed.
+3)True
+10)Instruction Set Architecture
+==========
+1.3.9
+2)a.	248
+  b.	202
+  c.	240	
+3)a. 10001
+  b. 101000000
+  c. 11110
+5)a.	7 bits
+  b.	9 bits
+  c.	15 bits
+6)a.	35DA
+  b.	CEA5
+  c.	FEDB
+7)a.	10100100011010010011111110111100
+  b.	10110110100101111100011110100001
+  c.	00101011001111011001010001100001
+==========
+1.7.1
+1) leftmost bit, with a value of 128
+2)a.	53
+  b.	150
+  c.	204
+3)a.	110001010
+  b.	110010110
+  c.	100100001
+4)    110	
+5)a.	16 bits
+  b.	32 bits
+  c.	64 bits
+  d.	128 bits
+6)a.	12 bits
+  b.	16 bits
+  c.	16 bits
+7)a.	35DA	
+  b.	CEA3
+  c.	FEDB
+8)a.	1001001101111100111010100
+  b.	1101010110011011111101010010101
+  c.	11110110100110111101110000101010
+9)a.	58
+  b.	447
+  c.	4097
+10)a.	98
+  b.	1203
+  c.	671
+11)a.	FFE8
+  b.	FEB5
+12)a.	FFEB
+  b.	FFD3
+13)a.	27641
+  b.	-16093S
+14)a.	19666
+  b.	-32208
+15)a.	-75
+  b.	42
+  c.	-16
+16)a.	-128
+  b.	-52
+  c.	-73
+17)a.	11111011
+  b.	?11010110?
+  c.	11110000
+18)a.	?10111000?
+  b.	?10011110?
+  c.	11100110
+19)a.	AB2
+  b.	1106
+20)a.	B82
+  b.	1316
+21)	42,01000010 
+22)	47,01000111
+25)	A | B | Not(A or B)
+	-------------------
+	T | T |     F
+	T | F |	    F
+	F | T |	    F
+	F | F |     T
+==========
+1.7.2
+
+#include <math.h>
+#include <iostream>
+#include <string>
+using namespace std;
+
+int binaryToInt(string binary);
+
+int main()
+{
+	string binary = "";
+	cout << "Enter a 16 bit binary number" << endl;
+	cin >> binary;
+	cout << "Integer value is " << binaryToInt(binary) << endl;
+
+	return 0;
+}
+
+int binaryToInt(string binary)
+{
+	int toReturn = 0;
+	int exponent = 15;
+	for (char bit : binary)
+	{
+		if (bit == '1')
+		{
+			toReturn += pow(2, exponent);
+		}
+		exponent--;
+	}
+	return toReturn;
+}
+
+
+=========
+E.C.  1.4.2
+1)Not(X) or Y
+2)(X and Y)
+3)(T and F) or T = T
+4)Not(F or T) = F
+5)Not(F) or Not(T) = T
