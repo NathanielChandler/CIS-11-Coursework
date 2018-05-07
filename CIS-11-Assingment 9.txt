@@ -1,0 +1,54 @@
+ 
+Briefly describe the concept of "Stack Frame" (1 through 5 points depending on quality of the answer)
+------------------------------------------
+It's the isolation of the variables in different functions on the Stack.
+
+
+_____________________________________________________________
+
+Briefly describe the concept of a "Calling Convention" (1 through 5 points depending on quality of the answer)
+------------------------------------------
+A low level procedure desctibing how subroutines recieve information from the caller and return information 
+after the routine has been completed 
+
+
+_____________________________________________________________
+
+Why do the book examples always start functions with "push ebp" and "mov ebp,esp" (2 points)
+------------------------------------------
+The book treats ebp as a pointer to the front of the Stack.
+
+
+_____________________________________________________________ 
+What is the x64 equivalent to "push ebp" and "mov ebp,esp)" (2 points)
+------------------------------------------
+push rbp
+mov rbp, rsp
+
+
+_____________________________________________________________
+What are the differences between "Microsoft x64 calling convention" and "System V AMD64 ABI calling convention" (2 points)
+------------------------------------------
+The Microsoft x64 calling convention is followed on Windows, and it allots a shadow space of 32 bytes before calling a function.
+The System V calling convention is followed on MacOS and Linux, and it does not allot a shadow space.
+ 
+
+_____________________________________________________________
+
+void myFunction(int a, int b, int c, int d, int e, int f)  {
+  //some code here
+}
+
+
+Upon entry to myFunction (above), what does the stack look like when using Microsoft x64 calling convention? (3 points)
+------------------------------------------
+a in RCX, b in RDX, c in R8, d in R9, e and f pushed on stack 
+
+
+_____________________________________________________________
+Upon entry to myFunction (above), what does the stack look like when using stdcall convention (3 points)
+------------------------------------------
+a in RDI, b in RSI, c in RDX, d in RCX, e in R8, f in R9, nothing on stack 
+
+
+_____________________________________________________________
