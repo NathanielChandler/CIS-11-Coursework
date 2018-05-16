@@ -1,0 +1,94 @@
+WriteInt64 PROTO
+ReadInt64 PROTO
+WriteString PROTO
+Crlf PROTO 
+
+extrn ExitProcess: PROC
+
+;Given an array of 8-byte integers, sort the array using the Bubble Sort algorithm. 
+;Your program should print the array before and after the sort takes place. 
+;If you are unable to attend the lecture where the algorithm is presented, 
+;you can find it here: https://www.geeksforgeeks.org/bubble-sort/
+;NOTE: This is Dynamic! You just have to adjust the initial variables when editing the arrays
+.data
+array QWORD 5, 237, 20, 13, 14, 7, 6, 8, 234
+arrayLength QWORD 9
+arrayMaxElement QWORD 8
+count QWORD 0
+prompt BYTE "Make a selection from the following list: ",0
+pressEnter BYTE "Press Enter to Continue",0
+.code
+main proc
+	
+mov rcx, arrayLength
+mov rsi, 0
+L1:
+	mov rax, array[rsi * 8]
+	call WriteInt64
+	inc rsi
+loop L1
+call crlf
+	
+mov rcx, arrayMaxElement
+BubbleSort:
+mov count, rcx
+mov rcx, arrayMaxElement
+mov rsi, 0
+L2:
+	mov r12, rsi 
+	imul r12,8
+	mov r14, array[r12]
+	mov r15, array[r12+8]
+	cmp r14,r15
+	jle E1
+	mov array[r12], r15
+	mov array[r12+8], r14
+	E1:
+	inc rsi
+loop L2
+
+
+mov rcx, arrayLength
+mov rsi, 0
+L3:
+	mov rax, array[rsi * 8]
+	call WriteInt64
+	inc rsi
+loop L3
+call Crlf
+
+mov rcx, count
+loop BubbleSort
+
+
+mov rcx, arrayLength
+mov rsi, 0
+L4:
+	mov rax, array[rsi * 8]
+	call WriteInt64
+	inc rsi
+loop L4
+
+	EndProgram:
+		call pressEnterToContinue
+
+    call ExitProcess
+
+main endp
+
+writeToScreen proc
+
+	call WriteInt64
+
+	ret
+writeToScreen endp
+
+pressEnterToContinue proc
+	call Crlf
+	mov rdx, OFFSET pressEnter
+	call WriteString
+	call ReadInt64
+	ret
+pressEnterToContinue endp
+
+end
