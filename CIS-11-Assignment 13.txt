@@ -9,7 +9,7 @@ extrn ExitProcess: PROC
 ;Your program should print the array before and after the sort takes place. 
 ;If you are unable to attend the lecture where the algorithm is presented, 
 ;you can find it here: https://www.geeksforgeeks.org/bubble-sort/
-;NOTE: This is Dynamic! You just have to adjust the initial variables when editing the arrays
+;NOTE: This can handle different sized arrays. You just have to adjust the initial variables when editing the arrays
 .data
 array QWORD 5, 237, 20, 13, 14, 7, 6, 8, 234
 arrayLength QWORD 9
